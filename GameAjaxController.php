@@ -31,7 +31,7 @@ if (isset($_POST['action'])) {
       $rating = $_POST['rating'];
       $company = $_POST['company'];
       try {
-        $game = new Game(null, $gameType, $name, $rating, $year);
+        $game = new Game(null, $gameType, $name, $rating, $year, $company);
         $game->save();
       } catch (PDOException $exception) {
         $return = false;
@@ -40,7 +40,7 @@ if (isset($_POST['action'])) {
     case ACTION_DELETE:
       $id = $_POST['id'];
       try {
-        $game = new Game($id, null, null, null, null);
+        $game = new Game($id, null, null, null, null, null);
         $game->delete();
       } catch (PDOException $exception) {
         $return = false;
