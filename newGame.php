@@ -90,10 +90,11 @@ if (isset($_GET['id'])) {
             });
 
         <?php if (isset($game)) : ?>
-            var name = $("#name").val('<?php echo $game->getName(); ?>');
-            var gameType = $("#gameType").val('<?php echo $game->getGameType(); ?>');
-            var rating = $("#rating").val('<?php echo $game->getRating(); ?>');
-            var year = $("#year").val('<?php echo $game->getYear(); ?>');
+            $("#name").val('<?php echo $game->getName(); ?>');
+            $("#gameType").val('<?php echo $game->getGameType(); ?>');
+            $("#rating").val('<?php echo $game->getRating(); ?>');
+            $("#year").val('<?php echo $game->getYear(); ?>');
+            $("#company").val('<?php echo $game->getCompany(); ?>');
           <?php endif ?>
 
         });
