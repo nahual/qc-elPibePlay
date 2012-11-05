@@ -99,7 +99,7 @@ function getIcon($game)
             <span class="brand">
                 elPibePlay <span id='version'></span>
             </span>
-            <img alt="elPibePlay" title="elPibePlay" src="resources/img/icon.png" width="32"/>
+            <a href="http://www.youtube.com/watch?v=YF7jfH3McSA&feature=related" target="_blank"><img alt="elPibePlay" title="elPibePlay" src="resources/img/icon.png" width="32"/></a>
             <ul class="nav">
                 <li class="active"><a href="index.php">Juegos</a></li>
                 <li><a href="newGame.php">+ Nuevo Juego</a></li>
