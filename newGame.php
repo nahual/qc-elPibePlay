@@ -43,7 +43,10 @@ if (isset($_GET['id'])) {
                 e.preventDefault();
                 var name = $("#name").val();
                 var gameType = $("#gameType").val();
-                var rating = $("#rating").val();
+                var rating = $("input[name='rating']:checked").val();
+                if (!rating) {
+                    rating = 0;
+                }
                 var year = $("#year").val();
                 var company = $("#company").val();
                 var id = null;
@@ -100,9 +103,10 @@ if (isset($_GET['id'])) {
         <?php if (isset($game)) : ?>
             $("#name").val('<?php echo $game->getName(); ?>');
             $("#gameType").val('<?php echo $game->getGameType(); ?>');
-            $("#rating").val('<?php echo $game->getRating(); ?>');
             $("#year").val('<?php echo $game->getYear(); ?>');
             $("#company").val('<?php echo $game->getCompany(); ?>');
+
+            $("input[name='rating']").rating('select', '<?php echo $game->getRating(); ?>')
           <?php endif ?>
 
         });
@@ -147,11 +151,16 @@ if (isset($_GET['id'])) {
             <label class="control-label" for="gameType">Puntaje</label>
 
             <div class="controls">
-                <select id="rating">
-                  <?php for ($i = 1; $i < 11; $i++) : ?>
-                    <option value="<?php echo $i?>"><?php echo $i?></option>
-                  <?php endfor ?>
-                </select>
+                <input type="radio" class="star {split:2} required" name="rating" value="1"/>
+                <input type="radio" class="star {split:2}" name="rating" value="2"/>
+                <input type="radio" class="star {split:2}" name="rating" value="3"/>
+                <input type="radio" class="star {split:2}" name="rating" value="4"/>
+                <input type="radio" class="star {split:2}" name="rating" value="5"/>
+                <input type="radio" class="star {split:2}" name="rating" value="6"/>
+                <input type="radio" class="star {split:2}" name="rating" value="7" checked="true"/>
+                <input type="radio" class="star {split:2}" name="rating" value="8"/>
+                <input type="radio" class="star {split:2}" name="rating" value="9"/>
+                <input type="radio" class="star {half: true}" name="rating" value="10"/>
             </div>
         </div>
         <div class="control-group">
