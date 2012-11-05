@@ -19,7 +19,7 @@ class GameTable
   }
 
   public function getAllGames() {
-    return $this->queryAndTransformGames("SELECT * FROM game ORDER BY rating ASC");
+    return $this->queryAndTransformGames("SELECT * FROM game ORDER BY rating DESC");
   }
 
   private function queryAndTransformGames($sql, $onlyImportantColumns = false) {
@@ -55,7 +55,7 @@ class GameTable
     if ($gameTypeFilter != "todos") {
       $sql .= " WHERE game_type='$gameTypeFilter'";
     }
-    $sql .= " ORDER BY rating ASC";
+    $sql .= " ORDER BY rating DESC";
     return $sql;
   }
 
