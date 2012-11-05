@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
             })
 
             $("#cancelGuardarJuego").click(function () {
-                $formNuevoJuego.reset();
+                window.location.href = "index.php";
             });
 
         <?php if (isset($game)) : ?>
