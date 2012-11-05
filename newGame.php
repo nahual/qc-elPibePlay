@@ -48,6 +48,14 @@ if (isset($_GET['id'])) {
                 var company = $("#company").val();
                 var id = null;
 
+                $(".control-group", $formNuevoJuego).each(function() {
+                    cleanup_errors(this);
+                });
+                if (!validate_form($formNuevoJuego)) {
+                    return false;
+                }
+
+
                 <?php if (isset($game)) : ?>
                 id = <?php echo $game->getId(); ?>;
                 <?php endif ?>
@@ -151,7 +159,7 @@ if (isset($_GET['id'])) {
 
             <div class="controls">
                 <select id="year">
-                  <?php for ($i = 1980; $i < date('Y'); $i++) : ?>
+                  <?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
                     <option value="<?php echo $i?>"><?php echo $i?></option>
                   <?php endfor ?>
                 </select>
