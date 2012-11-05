@@ -16,5 +16,4 @@ define("DB_PASS", "");
 define("DB_SCHEMA_NAME", "elPibePlay");
 
 
-
 ?>

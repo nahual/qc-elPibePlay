@@ -7,15 +7,170 @@
  * Cualquier inquietud, enviar un mail a sumate@nahual.com.ar
  *
  */
+
+include_once("config/includes.php");
+include_once("classes/GameType.php");
+include_once("classes/GameTable.php");
+include_once("GameAjaxController.php");
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+$gameTypes = GameType::getValues();
+
+$gameTable = new GameTable();
+
+$visibleFilters = false;
+$onlyImportantColumns = false;
+
+if (isset($_POST) && isset($_POST['aplicarFiltros'])) {
+  $visibleFilters = true;
+  if (isset($_POST['checkProyeccion'])) {
+    $onlyImportantColumns = true;
+  }
+  $gameTypeFilter = $_POST['gameTypeFilter'];
+  $games = $gameTable->getGames($onlyImportantColumns, $gameTypeFilter);
+} else {
+  $games = $gameTable->getAllGames();
+}
+
+function getIcon($game)
+{
+  echo "<img src='resources/img/iconos/" . $game->getGameType() . ".png' class='console-icon'  title='" . $game->getGameType() . "' alt='" . $game->getGameType() . "' />";
+}
+
 ?>
 
 <html>
 <head>
-    <title>La aplicaci&oacute;n del Pibe Play</title>
-    <link type="text/css" href="resources/styles/main.css" rel="stylesheet" />
+  <?php include_once("common_head.php") ?>
+    <script type="text/javascript">
+
+        $(function() {
+            $("#filtersToggle").click(function() {
+                $("#filtersFormContainer").fadeToggle();
+            });
+
+            <?php if ($visibleFilters) : ?>
+            $("#filtersFormContainer").show();
+            <?php if ($onlyImportantColumns) : ?>
+            $("#checkProyeccion").attr('checked', 'true');
+            <?php endif ?>
+            $("#gameType").val('<?php echo $gameTypeFilter; ?>');
+            <?php endif ?>
+        });
+
+
+        function remove_contact(id) {
+            if (confirm("Estas seguro?")) {
+                $.ajax({
+                    type:"POST",
+                    url:"GameAjaxController.php",
+                    data:{
+                        action:'<?php echo ACTION_DELETE ?>',
+                        id:id
+                    },
+
+                    success:function (result) {
+                        if (result) {
+                            $("tr#" + id).remove();
+                        } else {
+                            alert("Error");
+                        }
+                    },
+                    error:function (objeto, error, otroobj) {
+                        alert("Error: " + error);
+                    }
+                });
+            }
+        }
+
+        function edit_contact(id) {
+            window.location.href="newGame.php?id=" + id;
+        }
+
+    </script>
 </head>
 <body>
-    <h1>La aplicaci&oacute;n del Pibe Play</h1>
-    <img id="loginImage" src="resources/images/elPibePlay.jpg" alt="El Pibe Play" title="El Pibe Play" />
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <span class="brand">
+                elPibePlay <span id='version'></span>
+            </span>
+            <img alt="elPibePlay" title="elPibePlay" src="resources/img/icon.png" width="32"/>
+            <ul class="nav">
+                <li class="active"><a href="index.php">Juegos</a></li>
+                <li><a href="newGame.php">+ Nuevo Juego</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="filtersContainer">
+    <a id="filtersToggle" class="btn btn-info">Ver Filtros</a>
+    <div id="filtersFormContainer" class="well">
+      <form id="formFiltros" class="form-horizontal" action="index.php" method="POST">
+          <div class="control-group">
+              <label class="control-label" for="gameType">Consola</label>
+              <div class="controls">
+                  <select id="gameType" name="gameTypeFilter">
+                    <option value="todos">Todos</option>
+                    <?php foreach ($gameTypes as $gameType) : ?>
+                      <option value="<?php echo $gameType?>"><?php echo $gameType?></option>
+                    <?php endforeach ?>
+                  </select>
+              </div>
+          </div>
+          <div class="control-group">
+              <label class="control-label" for="checkProyeccion">Quiero jugar ya!</label>
+              <div class="controls">
+                  <input id="checkProyeccion" type="checkbox" name="checkProyeccion"/>
+              </div>
+          </div>
+          <div class="form-actions" style="text-align:right">
+              <button type="submit" id="aplicarFiltros" name="aplicarFiltros" class="btn btn-success" value="filtersOn">Aplicar filtros</button>
+          </div>
+      </form>
+    </div>
+</div>
+
+
+
+<div id="originalGameList" class="tableContainer">
+    <table class="table table-stripped table-hover">
+        <thead>
+        <th>Nombre</th>
+        <th>Consola</th>
+        <th>Puntaje</th>
+
+        <?php if (!$onlyImportantColumns): ?>
+        <th>Creador</th>
+        <th>A&ntilde;o</th>
+        <?php endif ?>
+
+        <th>Acciones</th>
+        </thead>
+        <tbody>
+        <?php foreach ($games as $game) : ?>
+        <tr id="<?php echo $game->getId() ?>">
+            <td><?php echo $game->getName() ?></td>
+            <td><?php echo getIcon($game) . "&nbsp;" . $game->getGameType() ?></td>
+            <td><?php echo $game->getRating() ?></td>
+            <?php if (!$onlyImportantColumns): ?>
+            <td><?php echo $game->getCompany(); ?></td>
+            <td><?php echo $game->getYear() ?></td>
+            <?php endif ?>
+            <td>
+                <i class='icon-pencil' style="cursor: pointer" onclick='edit_contact(<?php echo $game->getId() ?>)'></i>
+                / <i
+                    class='icon-remove' style="cursor: pointer"
+                    onclick='remove_contact(<?php echo $game->getId() ?>);'></i>
+            </td>
+        </tr>
+          <?php endforeach ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

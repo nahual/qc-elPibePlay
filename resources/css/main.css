@@ -1,0 +1,40 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+#nuevoJuego {
+    margin-left: 25px;
+}
+
+#newGameContainer {
+    width: 50%;
+    margin-top: 40px;
+    margin-left: 25%;
+}
+
+#successMessage {
+    display: none;
+}
+
+#originalGameList, #filtersContainer {
+    width: 50%;
+    margin-left: 25%;
+}
+
+#filtersFormContainer {
+    margin-top: 5px;
+    display: none;
+}
+
+.console-icon {
+    width: 16px;
+    height: 16px;
+    border: 0;
+    margin-right: 5px;;
+}
+
+.tableContainer table tr td, .tableContainer table tr th {
+    font-size: 10pt;
+}
+
