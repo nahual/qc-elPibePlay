@@ -62,11 +62,12 @@ class Game extends ActiveRecordEntity
     return $this->company;
   }
 
-  public function modify($gameType, $name, $rating, $year) {
+  public function modify($gameType, $name, $rating, $year, $company) {
     $this->gameType = $gameType;
     $this->name = $name;
     $this->rating = $rating;
     $this->year = $year;
+    $this->company = $company;
   }
 
   public function save()

@@ -51,9 +51,10 @@ if (isset($_POST['action'])) {
       $gameType = $_POST['gameType'];
       $year = $_POST['year'];
       $rating = $_POST['rating'];
+      $company = $_POST['company'];
       $gameTable = new GameTable();
       $game =  $gameTable->getById($_POST['id']);
-      $game->modify($gameType, $name, $rating, $year);
+      $game->modify($gameType, $name, $rating, $year, $company);
       $game->save();
       break;
     default:
