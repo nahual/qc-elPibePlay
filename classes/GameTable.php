@@ -19,7 +19,7 @@ class GameTable
   }
 
   public function getAllGames() {
-    return $this->queryAndTransformGames("SELECT * FROM game");
+    return $this->queryAndTransformGames("SELECT * FROM game ORDER BY rating ASC");
   }
 
   private function queryAndTransformGames($sql, $onlyImportantColumns = false) {
