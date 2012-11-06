@@ -36,5 +36,6 @@ body {
 
 .tableContainer table tr td, .tableContainer table tr th {
     font-size: 10pt;
+    padding: 10px;
 }
 
