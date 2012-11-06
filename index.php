@@ -126,6 +126,8 @@ function getIcon($game)
               <label class="control-label" for="checkProyeccion">Quiero jugar ya!</label>
               <div class="controls">
                   <input id="checkProyeccion" type="checkbox" name="checkProyeccion"/>
+                  &nbsp;
+                  <span class="label label-info" style="font-size: 7pt; cursor: pointer" title="El pibe play a veces está tan desesperado por jugar, que usa este filtro para ver solo la columnas realmente importantes: Nombre del juego, y en que consola lo tiene.">info</span>
               </div>
           </div>
           <div class="form-actions" style="text-align:right">
