@@ -39,8 +39,11 @@ if (isset($_GET['id'])) {
 
             var $formNuevoJuego = $("#formNuevoJuego");
 
-            $("#guardarJuego").click(function (e) {
+            var $guardarJuegoButton= $("#guardarJuego");
+            $guardarJuegoButton.click(function (e) {
                 e.preventDefault();
+                $guardarJuegoButton.attr('disabled', 'disabled');
+
                 var name = $("#name").val();
                 var gameType = $("#gameType").val();
                 var rating = $("input[name='rating']:checked").val();
@@ -55,6 +58,7 @@ if (isset($_GET['id'])) {
                     cleanup_errors(this);
                 });
                 if (!validate_form($formNuevoJuego)) {
+                    $guardarJuegoButton.removeAttr('disabled');
                     return false;
                 }
 
@@ -91,7 +95,8 @@ if (isset($_GET['id'])) {
                         }
                     },
                     error:function (objeto, error, otroobj) {
-                        alert("Error: " + error);
+                        $guardarJuegoButton.removeAttr('disabled');
+                        alert("Error inesperado. Si lo podés reproducir, no dudes en avisarnos a sumate@nahual.com.ar");
                     }
                 });
             })
