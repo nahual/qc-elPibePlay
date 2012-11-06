@@ -183,7 +183,7 @@ if (isset($_GET['id'])) {
             <label class="control-label" for="name">Empresa</label>
 
             <div class="controls">
-                <input type="text" id="company" placeholder="Empresa que lo creo" class="input-xlarge">
+                <input type="text" id="company" placeholder="Empresa que lo cre&oacute;" class="input-xlarge">
             </div>
         </div>
         <div class="form-actions" style="text-align:right">
