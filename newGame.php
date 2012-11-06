@@ -87,10 +87,10 @@ if (isset($_GET['id'])) {
 
                     success:function (result) {
                         if (result) {
-                            $formNuevoJuego.reset();
                             window.location.href = "index.php";
                         }
                         else {
+                            $guardarJuegoButton.removeAttr('disabled');
                             alert("Error");
                         }
                     },

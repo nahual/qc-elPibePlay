@@ -1,5 +1,5 @@
 <title>La aplicaci&oacute;n del Pibe Play</title>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <link type="text/css" href="resources/css/bootstrap.css" rel="stylesheet"/>
 <link type="text/css" href="resources/css/main.css" rel="stylesheet"/>
