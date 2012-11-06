@@ -48,12 +48,21 @@ function getIcon($game)
     <script type="text/javascript">
 
         $(function() {
-            $("#filtersToggle").click(function() {
-                $("#filtersFormContainer").fadeToggle();
+            var $filtersToggle = $("#filtersToggle");
+            $filtersToggle.click(function() {
+                var $filtersFormContainer = $("#filtersFormContainer");
+                $filtersFormContainer.fadeToggle("fast", null, function() {
+                    if ($filtersFormContainer.is(":visible")) {
+                        $filtersToggle.text("Ocultar Filtros");
+                    } else {
+                        $filtersToggle.text("Ver Filtros");
+                    }
+                });
+
             });
 
             <?php if ($visibleFilters) : ?>
-            $("#filtersFormContainer").show();
+            $filtersFormContainer.show();
             <?php if ($onlyImportantColumns) : ?>
             $("#checkProyeccion").attr('checked', 'true');
             <?php endif ?>
