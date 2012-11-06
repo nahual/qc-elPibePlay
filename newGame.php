@@ -96,7 +96,7 @@ if (isset($_GET['id'])) {
                     },
                     error:function (objeto, error, otroobj) {
                         $guardarJuegoButton.removeAttr('disabled');
-                        alert("Error inesperado. Si lo podés reproducir, no dudes en avisarnos a sumate@nahual.com.ar");
+                        alert("Error inesperado. Si lo podés reproducir, no dudes en avisarnos a sumate@nahual.com.ar, y contanos como hacemos para reproducirlo. Gracias!");
                     }
                 });
             })
