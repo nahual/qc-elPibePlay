@@ -49,8 +49,9 @@ function getIcon($game)
 
         $(function() {
             var $filtersToggle = $("#filtersToggle");
+            var $filtersFormContainer = $("#filtersFormContainer");
+
             $filtersToggle.click(function() {
-                var $filtersFormContainer = $("#filtersFormContainer");
                 $filtersFormContainer.fadeToggle("fast", null, function() {
                     if ($filtersFormContainer.is(":visible")) {
                         $filtersToggle.text("Ocultar Filtros");
