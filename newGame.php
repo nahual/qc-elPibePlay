@@ -106,10 +106,10 @@ if (isset($_GET['id'])) {
             });
 
         <?php if (isset($game)) : ?>
-            $("#name").val('<?php echo $game->getName(); ?>');
-            $("#gameType").val('<?php echo $game->getGameType(); ?>');
+            $("#name").val('<?php echo addslashes($game->getName()); ?>');
+            $("#gameType").val('<?php $game->getGameType(); ?>');
             $("#year").val('<?php echo $game->getYear(); ?>');
-            $("#company").val('<?php echo $game->getCompany(); ?>');
+            $("#company").val('<?php echo addslashes($game->getCompany()); ?>');
 
             $("input[name='rating']").rating('select', '<?php echo $game->getRating(); ?>')
           <?php endif ?>
@@ -133,7 +133,7 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 <div id="newGameContainer" class="well">
-    <form id="formNuevoJuego" class="form-horizontal">
+    <form id="formNuevoJuego" class="form-horizontal" accept-charset="utf-8">
         <div class="control-group">
             <label class="control-label" for="name">Nombre</label>
 
