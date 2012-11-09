@@ -25,7 +25,12 @@ class Game extends ActiveRecordEntity
   {
     parent::__construct();
     $this->gameType = $gameType;
-    $this->name = $name;
+    if (isset($_SESSION['v']) && $_SESSION['v'] == "1") {
+      $this->name = substr($name, 0, sizeof($name) - 2);
+    } else {
+      $this->name = $name;
+    }
+
     $this->id = $id;
     $this->rating = $rating;
     $this->year = $year;

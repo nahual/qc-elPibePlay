@@ -19,7 +19,12 @@ class GameTable
   }
 
   public function getAllGames() {
+    //BUG PLANTADO: cuando trae el listado general, se come los jueguitos tipo XBOX
+    if (isset($_SESSION['v']) && $_SESSION['v'] == "1") {
+      return $this->queryAndTransformGames("SELECT * FROM game WHERE game_type <> 'Xbox' ORDER BY rating DESC");
+    }
     return $this->queryAndTransformGames("SELECT * FROM game ORDER BY rating DESC");
+
   }
 
   private function queryAndTransformGames($sql, $onlyImportantColumns = false) {
@@ -45,18 +50,42 @@ class GameTable
 
   public function buildFilterQuery($onlyImportantColumns, $gameTypeFilter)
   {
-    $sql = "SELECT";
-    if ($onlyImportantColumns) {
-      $sql .= " id, name, game_type, rating ";
+    if (isset($_SESSION['v']) && $_SESSION['v'] == "1") {
+      $sql = "SELECT";
+      if ($onlyImportantColumns) {
+        $sql .= " id, name, game_type, rating ";
+      } else {
+        $sql .= " * ";
+      }
+      $sql .= " FROM game";
+      //BUG PLANTADO: cuando trae el listado general, se come los jueguitos tipo XBOX
+      $sql .= " WHERE game_type <>'Xbox' ";
+      if ($gameTypeFilter != "todos") {
+        $sql .= " AND game_type='$gameTypeFilter'";
+      }
+      //BUG PLANTADO: si se esconden las columnas, el ordenamiento es distinto
+      if ($onlyImportantColumns) {
+        $sql .= " ORDER BY name DESC";
+      } else {
+        $sql .= " ORDER BY rating DESC";
+      }
+
+      return $sql;
     } else {
-      $sql .= " * ";
+      $sql = "SELECT";
+      if ($onlyImportantColumns) {
+        $sql .= " id, name, game_type, rating ";
+      } else {
+        $sql .= " * ";
+      }
+      $sql .= " FROM game";
+      if ($gameTypeFilter != "todos") {
+        $sql .= " WHERE game_type='$gameTypeFilter'";
+      }
+      $sql .= " ORDER BY rating DESC";
+      return $sql;
     }
-    $sql .= " FROM game";
-    if ($gameTypeFilter != "todos") {
-      $sql .= " WHERE game_type='$gameTypeFilter'";
-    }
-    $sql .= " ORDER BY rating DESC";
-    return $sql;
+
   }
 
   public function getById($id) {

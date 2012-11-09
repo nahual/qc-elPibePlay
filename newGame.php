@@ -14,7 +14,7 @@ ini_set('display_errors', '1');
 include_once("config/includes.php");
 include_once("classes/GameType.php");
 include_once("classes/GameTable.php");
-include_once("GameAjaxController.php");
+include_once("classes/ActionType.php");
 
 $gameTypes = GameType::getValues();
 
@@ -67,9 +67,9 @@ if (isset($_GET['id'])) {
                 id = <?php echo $game->getId(); ?>;
                 <?php endif ?>
 
-                var action = '<?php echo ACTION_SAVE; ?>';
+                var action = '<?php echo ActionType::ACTION_SAVE; ?>';
                 <?php if (isset($game)) : ?>
-                action =  '<?php echo ACTION_MODIFY; ?>',
+                action =  '<?php echo ActionType::ACTION_MODIFY; ?>',
                 <?php endif ?>
 
                 $.ajax({
@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
 
                     success:function (result) {
                         if (result) {
-                            window.location.href = "index.php";
+                            window.location.href = "index.php?<?php echo $_SESSION['v_url'] ?>";
                         }
                         else {
                             $guardarJuegoButton.removeAttr('disabled');
@@ -102,7 +102,7 @@ if (isset($_GET['id'])) {
             })
 
             $("#cancelGuardarJuego").click(function () {
-                window.location.href = "index.php";
+                window.location.href = "index.php?<?php echo $_SESSION['v_url'] ?>";
             });
 
         <?php if (isset($game)) : ?>
@@ -126,7 +126,7 @@ if (isset($_GET['id'])) {
             </span>
             <a href="http://www.youtube.com/watch?v=YF7jfH3McSA&feature=related" target="_blank"><img alt="elPibePlay" title="elPibePlay" src="resources/img/icon.png" width="32"/></a>
             <ul class="nav">
-                <li><a href="index.php">Juegos</a></li>
+                <li><a href="index.php?<?php echo $_SESSION['v_url'] ?>">Juegos</a></li>
                 <li class="active"><a href="newGame.php">+ Nuevo Juego</a></li>
             </ul>
         </div>

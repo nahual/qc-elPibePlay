@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 /**
  * User: Proyecto Nahual
  * Date: 30/10/12

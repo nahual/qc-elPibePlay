@@ -11,11 +11,9 @@
 include_once("config/includes.php");
 include_once("classes/Game.php");
 include_once("classes/GameTable.php");
+include_once("classes/ActionType.php");
 
 
-const ACTION_SAVE = "save";
-const ACTION_DELETE = "delete";
-const ACTION_MODIFY = "modify";
 
 if (isset($_POST['action'])) {
 
@@ -24,7 +22,7 @@ if (isset($_POST['action'])) {
   $return = true;
 
   switch ($action) {
-    case ACTION_SAVE:
+    case ActionType::ACTION_SAVE:
       $name = $_POST['name'];
       $gameType = $_POST['gameType'];
       $year = $_POST['year'];
@@ -37,7 +35,7 @@ if (isset($_POST['action'])) {
         $return = false;
       }
       break;
-    case ACTION_DELETE:
+    case ActionType::ACTION_DELETE:
       $id = $_POST['id'];
       try {
         $game = new Game($id, null, null, null, null, null);
@@ -46,7 +44,7 @@ if (isset($_POST['action'])) {
         $return = false;
       }
       break;
-    case ACTION_MODIFY:
+    case ActionType::ACTION_MODIFY:
       $name = $_POST['name'];
       $gameType = $_POST['gameType'];
       $year = $_POST['year'];

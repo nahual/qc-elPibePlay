@@ -7,11 +7,13 @@
  * Cualquier inquietud, enviar un mail a sumate@nahual.com.ar
  *
  */
+include_once("version_addendum.php");
 
 include_once("config/includes.php");
 include_once("classes/GameType.php");
 include_once("classes/GameTable.php");
-include_once("GameAjaxController.php");
+include_once("classes/ActionType.php");
+
 
 
 error_reporting(E_ALL);
@@ -78,7 +80,7 @@ function getIcon($game)
                     type:"POST",
                     url:"GameAjaxController.php",
                     data:{
-                        action:'<?php echo ACTION_DELETE ?>',
+                        action:'<?php echo ActionType::ACTION_DELETE ?>',
                         id:id
                     },
 
@@ -137,12 +139,13 @@ function getIcon($game)
               <div class="controls">
                   <input id="checkProyeccion" type="checkbox" name="checkProyeccion"/>
                   &nbsp;
-                  <span class="label label-info" style="font-size: 7pt; cursor: default" title="El pibe play a veces est&aacute; tan desesperado por jugar, que usa este filtro para ver solo la columnas realmente importantes: nombre del juego, en que consola lo tiene y que puntaje le di&oacute;.">info</span>
+                  <span class="label label-info" style="font-size: 7pt; cursor: default" title="El pibe play a veces est&aacute; tan desesperado por jugar, que usa este filtro para ver solo la columnas realmente importantes: nombre del juego y en que consola lo tiene, y como siempre, ordenado por puntaje">info</span>
               </div>
           </div>
           <div class="form-actions" style="text-align:right">
               <button type="submit" id="aplicarFiltros" name="aplicarFiltros" class="btn btn-success" value="filtersOn">Aplicar filtros</button>
           </div>
+          <input type="hidden" name="v" value="<?php echo $_SESSION['v'] ?>">
       </form>
     </div>
 </div>
@@ -154,9 +157,9 @@ function getIcon($game)
         <thead>
         <th>Nombre</th>
         <th>Consola</th>
-        <th>Puntaje</th>
 
         <?php if (!$onlyImportantColumns): ?>
+        <th>Puntaje</th>
         <th>Creador</th>
         <th>A&ntilde;o</th>
         <?php endif ?>
@@ -168,8 +171,8 @@ function getIcon($game)
         <tr id="<?php echo $game->getId() ?>">
             <td><?php echo $game->getName() ?></td>
             <td><?php echo getIcon($game) . "&nbsp;" . $game->getGameType() ?></td>
-            <td><?php echo $game->getRating() ?></td>
             <?php if (!$onlyImportantColumns): ?>
+            <td><?php echo $game->getRating() ?></td>
             <td><?php echo $game->getCompany(); ?></td>
             <td><?php echo $game->getYear() ?></td>
             <?php endif ?>
