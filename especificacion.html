@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Especificaci&oacute;n - elPibePlay</title>
+
+    <style type="text/css">
+        body {
+            font-family: Verdana;
+        }
+
+        table tr td {
+            text-align: left;
+            width: 50%;
+            border-collapse: collapse;
+            border: 1px solid;
+            margin: 0;
+        }
+        table {
+            width:70%;
+            table-layout: fixed;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Especificaci&oacute;n - elPibePlay</h2>
+
+<h3>General</h3>
+
+<table>
+    <tr>
+        <td>El jugador entra a la aplicaci&oacute;n</td><td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>T&iacute;tulo: elPibePlay</li>
+                <li>
+                    Opciones
+                    <ul>
+                        <li>Juegos (opci&oacute;n por defecto al ingresar a la aplicaci&oacute;n)</li>
+                        <li>Nuevo juego</li>
+                        <li>elPibePlay</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+<h3>Juegos</h3>
+
+<table>
+    <tr>
+        <td>El jugador selecciona la opci&oacute;n Juegos</td><td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                El sistema muestra la pantalla:
+                <li>Opci&oacute;n: Ver Filtros</li>
+                <li>
+                    Grilla
+                    <ul>
+                        <li>
+                            Columnas
+                            <ul>
+                                <li>Nombre: nombre del juego</li>
+                                <li>Consola: consola en  el que elPibePlay tiene el juego</li>
+                                <li>Puntaje: puntaje asociado al juego</li>
+                                <li>Creador: empresa que desarroll&oacute; el juego</li>
+                                <li>A&ntilde;o: de lanzamiento</li>
+                                <li>
+                                    Acciones:
+                                    <ul>
+                                        <li>Editar</li>
+                                        <li>Borrar</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>En la grilla se visualizan todos los juegos almacenados en la base de datos, en orden decreciente por puntaje </li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><ul><li>El usuario selecciona la opci&oacute;n "Ver filtros"</li></ul></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>Se visualiza un combo de consolas (<strong>todos</strong>, Nintendo, PC, PlayStation, PlayStation 2, PlayStation 3, Seba, Wii, Xbox) y la opci&oacute;n "quiero jugar ya."</li>
+                <li>Si el usuario aplica los filtros, el sistema devuelve los resultados correspondientes y con los filtros recientemente aplicados visibles.</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>El usuario selecciona una consola</li>
+                <li>En la grilla se visualizan s&oacute;lo los juegos asociados a la consola seleccionada</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>El usuario selecciona la opci&oacute;n "Quiero jugar ya"</li>
+                <li>En la grilla se visualizan s&oacute;lo las columnas: Nombre y Consola.</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>La lista de juegos siempre deber&aacute; estar ordenada por puntaje descendente, sin importar si hay un filtro aplicado o no. O sea, primeros los que m&aacute;s puntaje tienen y &uacute;ltimos los de menor puntaje.</li>
+            </ul>
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+<h3>Nuevo Juego</h3>
+
+<table>
+    <tr>
+        <td>El jugador selecciona la opci&oacute;n para agregar un nuevo juego</td><td></td>
+    </tr>
+    <tr>
+        <td>
+            El sistema despliega un formulario con la siguiente informaci&oacute;n
+            <ul>
+                <li>
+                    <strong>Nombre:</strong>(texto, obligatorio, 49 caracteres). Valor por defecto: vac&iacute;o. Nombre del juego.
+                </li>
+                <li>
+                    <strong>Consola:</strong>(Combo, Obligatorio, opciones: [Nintendo, PC, PlayStation, PlayStation 2, PlayStation 3, Seba, Wii, Xbox]). Valor por defecto: Nintendo.
+                </li>
+                <li>
+                    <strong>Puntaje:</strong>(Selecci&oacute;n de estrellas, Obligatorio, valores de 1 a 10). Valor por defecto: 7. Puntaje del juego.
+                </li>
+                <li>
+                    <strong>A&ntilde;o:</strong>(Combo, obligatorio, Valores: de 1980 a la actualidad). Valor por defecto: 1980. A&ntilde;o de creaci&oacute;n del juego.
+                </li>
+                <li>
+                    <strong>Empresa:</strong>(texto, no obligatorio, 49 caracteres). Valor por defecto: vac&iacute;o. Nombre de la empresa que desarroll&oacute; el juego.
+                </li>
+            </ul>
+        </td>
+        <td>
+            Si se estaba agregando un nuevo contacto o editando uno existente el sistema emite un mensaje informando que se perder&aacute;n los cambios
+        </td>
+    </tr>
+    <tr>
+        <td>
+            El usuario completa (o deja los valores por defecto de) los campos obligatorios y selecciona la opci&oacute;n Guardar.
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            El sistema almacena los datos, los cuales se visualizan en la secci&oacute;n juegos.
+        </td>
+        <td>
+            Si no se completa el campo obligatorio el sistema muestra un mensaje informando que dicho campo debe completarse.
+        </td>
+    </tr>
+</table>
+
+
+<h3>Edici&oacute;n</h3>
+
+<table>
+    <tr>
+        <td>El usuario selecciona la opci&oacute;n para modificar un juego</td><td></td>
+    </tr>
+    <tr>
+        <td>
+            El sistema despliega un formulario con la siguiente informaci&oacute;n
+            <ul>
+                <li>
+                    <strong>Nombre:</strong>(texto, obligatorio, 49 caracteres). Valor: Nombre del juego.
+                </li>
+                <li>
+                    <strong>Consola:</strong>(Combo, Obligatorio, opciones: [Nintendo, PC, PlayStation, PlayStation 2, PlayStation 3, Seba, Wii, Xbox]). Valor: consola en la que corre el juego.
+                </li>
+                <li>
+                    <strong>Puntaje:</strong>(Selecci&oacute;n de estrellas, Obligatorio, valores de 1 a 10). Puntaje del juego.
+                </li>
+                <li>
+                    <strong>A&ntilde;o:</strong>(Combo, obligatorio, Valores: de 1980 a la actualidad). Valor: A&ntilde;o de creaci&oacute;n del juego.
+                </li>
+                <li>
+                    <strong>Empresa:</strong>(texto, no obligatorio, 49 caracteres). Valor: Nombre de la empresa que desarroll&oacute; el juego.
+                </li>
+            </ul>
+        </td>
+        <td>
+            Si se estaba agregando un nuevo contacto o editando uno existente el sistema emite un mensaje informando que se perder&aacute;n los cambios
+        </td>
+    </tr>
+    <tr>
+        <td>
+            El usuario edita  los campo. El usuario selecciona la opci&oacute;n guardar.
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>
+            El sistema almacena los datos
+        </td>
+        <td>
+            Mismas validaciones que en el alta
+        </td>
+    </tr>
+</table>
+
+<h3>Baja</h3>
+
+<table>
+    <tr>
+        <td>El usuario selecciona la opci&oacute;n para eliminar un juego</td><td></td>
+    </tr>
+    <tr>
+        <td>
+            El sistema emite un mensaje solicitando la confirmaci&oacute;n del usuario sobre estar seguro de querer borrar el contacto: "Est&aacute; seguro?"
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            El usuario confirma el mensaje
+        </td>
+        <td>
+            Si el usuario cancela el mensaje, los datos no se eliminan
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Los datos son eliminados de forma permanente
+        </td>
+        <td></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
