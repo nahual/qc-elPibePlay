@@ -14,7 +14,9 @@ class Database
   private static function getDatabase()
   {
     if (Database::$instance == null) {
-      Database::$instance = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_SCHEMA_NAME, DB_USER, DB_PASS);
+      Database::$instance = new PDO('sqlite:'.DB_FILE);
+      Database::$instance->setAttribute(PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION);
     }
     return Database::$instance;
   }

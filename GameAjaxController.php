@@ -8,7 +8,7 @@
  *
  */
 
-include_once("config/includes.php");
+include_once("includes.php");
 include_once("classes/Game.php");
 include_once("classes/GameTable.php");
 include_once("classes/ActionType.php");

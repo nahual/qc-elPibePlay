@@ -11,7 +11,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-include_once("config/includes.php");
+include_once("includes.php");
 include_once("classes/GameType.php");
 include_once("classes/GameTable.php");
 include_once("classes/ActionType.php");

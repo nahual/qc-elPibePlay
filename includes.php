@@ -12,10 +12,11 @@ session_start();
  */
 
 //Configuración base de datos
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "");
-define("DB_SCHEMA_NAME", "elPibePlay");
+define('ROOTPATH', __DIR__);
+define("DB_FILE", ROOTPATH."/SQLite/elpibeplay.sqlite");
+
+//echo ROOTPATH;
 
 
 ?>
+

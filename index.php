@@ -7,7 +7,7 @@
  * Cualquier inquietud, enviar un mail a sumate@nahual.com.ar
  *
  */
-include_once("config/includes.php");
+include_once("includes.php");
 
 include_once("version_addendum.php");
 include_once("classes/GameType.php");
